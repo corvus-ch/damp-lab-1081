@@ -37,3 +37,8 @@ GitOps repository for the damp-lab-1081 k8s cluster running on Hypriot/Raspberry
     sed -i'' 's|argoproj/argocd:v1.7.9|alinbalutoiu/argocd:v1.7.10|g' argocd/argocd.yaml
 
 ARM compatibilty of ArgoCD is not yet a given: https://github.com/argoproj/argo-cd/issues/4211.
+
+### Update cert-manager
+
+    export VERSION=v1.…
+    curl -sLo cert-manager/cert-manager.yaml https://github.com/jetstack/cert-manager/releases/download/${VERSION}/cert-manager.yaml
