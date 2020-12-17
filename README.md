@@ -47,3 +47,11 @@ ARM compatibilty of ArgoCD is not yet a given: https://github.com/argoproj/argo-
 
     export VERSION=v1.…
     curl -sLo cert-manager/cert-manager.yaml https://github.com/jetstack/cert-manager/releases/download/${VERSION}/cert-manager.yaml
+
+### Update Rook
+
+    export VERSION=v1.5.3
+    curl -sLo rook-cepth/crds.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/crds.yaml"
+    curl -sLo rook-cepth/common.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/common.yaml"
+    curl -sLo rook-cepth/operator.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/operator.yaml"
+    curl -sLo rook-cepth/cluster.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/cluster.yaml"
