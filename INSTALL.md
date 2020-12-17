@@ -39,8 +39,9 @@
 
     export K3SUP_SERVER_IP=172.16.42.50
     export K3SUP_SSH_KEY=~/.ssh/…
-    k3sup install --ssh-key "${K3SUP_SSH_KEY}" --user ubuntu --cluster --k3s-extra-args '--disable servicelb --disable traefik' --user ubuntu --ip "${K3SUP_SERVER_IP}"
-    for i in {1..2}; do k3sup join --ssh-key "${K3SUP_SSH_KEY}" --user ubuntu --server --server-ip ${K3SUP_SERVER_IP} --ip 172.16.42.5$i; done
+    export K3SUP_EXTRA_ARGS='--disable servicelb --disable traefik'
+    k3sup install --ssh-key "${K3SUP_SSH_KEY}" --user ubuntu --cluster --k3s-extra-args "${K3SUP_EXTRA_ARGS}" --ip "${K3SUP_SERVER_IP}"
+    for i in {1..2}; do k3sup join --ssh-key "${K3SUP_SSH_KEY}" --user ubuntu --server --k3s-extra-args "${K3SUP_EXTRA_ARGS}" --server-ip ${K3SUP_SERVER_IP} --ip 172.16.42.5$i; done
     k3sup join --ssh-key "${K3SUP_SSH_KEY}" --user ubuntu} --server-ip ${K3SUP_SERVER_IP} --ip 172.16.42.53
 
 ## Label nodes
