@@ -24,9 +24,10 @@ GitOps repository for the damp-lab-1081 k8s cluster running on Hypriot/Raspberry
 
 5. Trigger ArgoCD application syncs
 
+    kubectl create -f _apps/apps.yaml
     argocd app sync apps
-    argocd app sync kube-system
     argocd app sync argocd
+    argocd app sync -l app.kubernetes.io/instance=apps
 
 ## Operations and maintenance
 
