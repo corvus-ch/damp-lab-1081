@@ -3,22 +3,26 @@ GitOps repository for the damp-lab-1081 k8s cluster running on Hypriot/Raspberry
 
 ## Bootstrapping the cluster
 
-1. Install Sealed Secrets
+1. Apply the private key for Sealed Secrets
+
+   gpg --decrypt sealed-secrets-key.asc | kubectl create -f -
+
+2. Install Sealed Secrets
 
     kubectl apply -f kube-system/sealed-secrets.yaml
 
-2. Install ArgoCD
+3. Install ArgoCD
 
     kubectl create ns argocd
     kubectl apply -n argocd -f argocd/argocd.yaml
 
-3. Login to ArgoCD and change password
+4. Login to ArgoCD and change password
 
     kubectl -n argocd port-forward svc/argocd-server 8443:443
     argocd login --username admin --password $(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2) localhost:8443
     argocd account update-password --current-password $(kubectl get pods -n argocd -l app.kubernetes.io/name=argocd-server -o name | cut -d'/' -f 2)
 
-4. Trigger ArgoCD application syncs
+5. Trigger ArgoCD application syncs
 
     argocd app sync apps
     argocd app sync kube-system
