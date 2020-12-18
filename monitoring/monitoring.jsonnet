@@ -13,6 +13,12 @@ local kp =
       imageRepos+:: {
         kubeStateMetrics: 'carlosedp/kube-state-metrics',
       },
+      alertmanager+:: {
+        replicas: 1,
+      },
+      prometheus+:: {
+        replicas: 1,
+      },
     },
     prometheus+:: {
       prometheus+: {
