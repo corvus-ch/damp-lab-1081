@@ -1,3 +1,6 @@
+local k = import 'ksonnet/ksonnet.beta.4/k.libsonnet';
+local pvc = k.core.v1.persistentVolumeClaim;
+
 local kp =
   (import 'kube-prometheus/kube-prometheus.libsonnet') +
 
@@ -9,6 +12,19 @@ local kp =
       },
       imageRepos+:: {
         kubeStateMetrics: 'carlosedp/kube-state-metrics',
+      },
+    },
+    prometheus+:: {
+      prometheus+: {
+        spec+: {
+          storage: {
+            volumeClaimTemplate:
+              pvc.new() +
+              pvc.mixin.spec.withAccessModes('ReadWriteOnce') +
+              pvc.mixin.spec.resources.withRequests({ storage: '10Gi' }) +
+              pvc.mixin.spec.withStorageClassName('block'),
+          },
+        },
       },
     },
   };
