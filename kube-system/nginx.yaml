@@ -1,0 +1,12 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: nginx
+spec:
+  chart: ingress-nginx
+  repo: https://kubernetes.github.io/ingress-nginx
+  valuesContent: |-
+    controller:
+      replicaCount: 2
+      service:
+        externalTrafficPolicy: Local
