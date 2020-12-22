@@ -10,6 +10,7 @@ metadata:
   name: main
   namespace: monitoring
 spec:
+  externalUrl: https://alertmanager-main.apps.damp-lab-1081.corvus-ch.xyz
   image: quay.io/prometheus/alertmanager:v0.21.0
   nodeSelector:
     kubernetes.io/os: linux

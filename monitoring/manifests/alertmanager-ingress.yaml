@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+    ingress.kubernetes.io/ssl-redirect: "true"
+  name: alertmanager-main
+  namespace: monitoring
+spec:
+  rules:
+  - host: alertmanager-main.apps.damp-lab-1081.corvus-ch.xyz
+    http:
+      paths:
+      - backend:
+          serviceName: alertmanager-main
+          servicePort: web
+  tls:
+  - hosts:
+    - alertmanager-main.apps.damp-lab-1081.corvus-ch.xyz
+    secretName: alertmanager-main-ingress-cert

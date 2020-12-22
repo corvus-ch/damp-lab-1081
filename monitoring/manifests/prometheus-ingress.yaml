@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+    ingress.kubernetes.io/ssl-redirect: "true"
+  name: prometheus-k8s
+  namespace: monitoring
+spec:
+  rules:
+  - host: prometheus-k8s.apps.damp-lab-1081.corvus-ch.xyz
+    http:
+      paths:
+      - backend:
+          serviceName: prometheus-k8s
+          servicePort: web
+  tls:
+  - hosts:
+    - prometheus-k8s.apps.damp-lab-1081.corvus-ch.xyz
+    secretName: prometheus-k8s-ingress-cert

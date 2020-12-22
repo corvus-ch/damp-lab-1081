@@ -15,6 +15,7 @@ spec:
     - name: alertmanager-main
       namespace: monitoring
       port: web
+  externalUrl: https://prometheus-k8s.apps.damp-lab-1081.corvus-ch.xyz
   image: quay.io/prometheus/prometheus:v2.22.1
   nodeSelector:
     kubernetes.io/os: linux

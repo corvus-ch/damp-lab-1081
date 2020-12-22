@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/cluster-issuer: cloudflare
+    ingress.kubernetes.io/ssl-redirect: "true"
+  name: grafana
+  namespace: monitoring
+spec:
+  rules:
+  - host: grafana.apps.damp-lab-1081.corvus-ch.xyz
+    http:
+      paths:
+      - backend:
+          serviceName: grafana
+          servicePort: http
+  tls:
+  - hosts:
+    - grafana.apps.damp-lab-1081.corvus-ch.xyz
+    secretName: grafana-ingress-cert
