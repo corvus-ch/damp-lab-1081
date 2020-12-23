@@ -50,8 +50,4 @@ ARM compatibilty of ArgoCD is not yet a given: https://github.com/argoproj/argo-
 
 ### Update Rook
 
-    export VERSION=v1.5.3
-    curl -sLo rook-cepth/crds.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/crds.yaml"
-    curl -sLo rook-cepth/common.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/common.yaml"
-    curl -sLo rook-cepth/operator.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/operator.yaml"
-    curl -sLo rook-cepth/cluster.yaml "https://raw.githubusercontent.com/rook/rook/${VERSION}/cluster/examples/kubernetes/ceph/cluster.yaml"
+Update HelmChart.spec.version in `_apps/rook-ceph.yaml` 
