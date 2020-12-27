@@ -48,6 +48,11 @@ ARM compatibilty of ArgoCD is not yet a given: https://github.com/argoproj/argo-
     export VERSION=v1.…
     curl -sLo cert-manager/cert-manager.yaml https://github.com/jetstack/cert-manager/releases/download/${VERSION}/cert-manager.yaml
 
+### Update Nginx ingress
+
+   export VERSION=v0.42.0
+   curl -sLo ingress-nginx/deploy.yaml "https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-${VERSION}/deploy/static/provider/cloud/deploy.yaml"
+
 ### Update Rook
 
 Update HelmChart.spec.version in `_apps/rook-ceph.yaml` 
