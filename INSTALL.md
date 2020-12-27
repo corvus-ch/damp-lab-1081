@@ -6,7 +6,6 @@
 * Connected to a router providing DHCP
 * The IP addresses are fixed based on the Pis mac address (172.16.42.50-172.16.42.53)
 * Three Pis have a USB disk connected.
-* The USB disk are plain without any file system on them (`sgdisk --zap-all …`)
 
 ## Get the disk image
 
@@ -34,6 +33,16 @@
     EOF
     sed -i'' -e 's/$/ cgroup_memory=1 cgroup_enable=memory/' /Volumes/system-boot/cmdline.txt
     diskutil unmountDisk /dev/disk4
+
+## Prepare USB disk
+
+    sgdisk --zap-all /dev/sda
+    parted /dev/sda mklabel gpt
+    parted -a opt /dev/sda mkpart primary ext4 0% 100%
+    mkfs.ext4 -qFL longhorn /dev/sda1
+    mkdir -p /var/lib/longhorn
+    echo "LABEL=longhorn /var/lib/longhorn ext4 defaults 0 2" >> /etc/fstab
+    mount -a
 
 ## Install k3s
 
@@ -64,3 +73,4 @@
 ## Label nodes
 
    kubectl label node -l 'node-role.kubernetes.io/master!=true' node-role.kubernetes.io/worker=true
+   kubectl label node/k3s-02 node/k3s-03 node/k3s-04 node.longhorn.io/create-default-disk=true

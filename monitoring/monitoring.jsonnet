@@ -75,7 +75,7 @@ local kp =
               pvc.new() +
               pvc.mixin.spec.withAccessModes('ReadWriteOnce') +
               pvc.mixin.spec.resources.withRequests({ storage: '10Gi' }) +
-              pvc.mixin.spec.withStorageClassName('block'),
+              pvc.mixin.spec.withStorageClassName('longhorn'),
           },
         },
       },

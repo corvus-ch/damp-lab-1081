@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: longhorn-system
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: longhorn-system
+    server: https://kubernetes.default.svc
+  project: system
+  source:
+    path: longhorn-system
+    repoURL: https://github.com/corvus-ch/damp-lab-1081.git
+    targetRevision: HEAD

@@ -53,6 +53,9 @@ ARM compatibilty of ArgoCD is not yet a given: https://github.com/argoproj/argo-
    export VERSION=v0.42.0
    curl -sLo ingress-nginx/deploy.yaml "https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-${VERSION}/deploy/static/provider/cloud/deploy.yaml"
 
-### Update Rook
+### Update Longhorn
 
-Update HelmChart.spec.version in `_apps/rook-ceph.yaml` 
+    export VERSION=v1.1.0
+    curl -sLo longhorn-system/deploy.yaml "https://raw.githubusercontent.com/longhorn/longhorn/${VERSION}/deploy/longhorn.yaml"
+
+Review `git diff` and ensure no custom configuration got lost.

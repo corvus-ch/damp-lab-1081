@@ -54,5 +54,5 @@ spec:
         resources:
           requests:
             storage: 10Gi
-        storageClassName: block
+        storageClassName: longhorn
   version: v2.22.1
