@@ -14,3 +14,7 @@ spec:
     path: kube-system
     repoURL: https://github.com/corvus-ch/damp-lab-1081.git
     targetRevision: HEAD
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
