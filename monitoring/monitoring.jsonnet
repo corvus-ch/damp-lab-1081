@@ -38,12 +38,6 @@ local kp =
   {
     _config+:: {
       namespace: 'monitoring',
-      versions+:: {
-        kubeStateMetrics: '1.9.6',
-      },
-      imageRepos+:: {
-        kubeStateMetrics: 'carlosedp/kube-state-metrics',
-      },
       alertmanager+:: {
         replicas: 1,
       },
