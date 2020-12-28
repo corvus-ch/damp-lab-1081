@@ -10,7 +10,7 @@ CURRENT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 DOCKER_CMD  := docker
 DOCKER_ARGS := --rm -v "$(CURRENT_DIR):$(CURRENT_DIR)" --workdir "$(CURRENT_DIR)" quay.io/coreos/jsonnet-ci
 
-manifests: monitoring.jsonnet vendor ## Build the monitoring manifests
+manifests: monitoring.jsonnet *.libsonnet vendor ## Build the monitoring manifests
 	rm -rf "$@"
 	mkdir -p "$@/setup"
 	$(DOCKER_CMD) run $(DOCKER_ARGS) sh -c "jsonnet -J vendor -m $@ '$<' | xargs -I{} sh -c 'cat {} | gojsontoyaml > {}.yaml; rm -f {}' -- {}"

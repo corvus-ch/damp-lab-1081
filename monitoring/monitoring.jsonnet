@@ -33,6 +33,7 @@ local ingress(namespace, name, port) =
 
 local kp =
   (import 'kube-prometheus/kube-prometheus.libsonnet') +
+  (import 'k3s.libsonnet') +
 
   {
     _config+:: {
